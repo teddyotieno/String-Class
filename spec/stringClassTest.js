@@ -90,7 +90,10 @@
         expect(typeof('This is crazy'.words())).toBe('object');
       });
       it('Should return true for instanceof the returned value as array', function() {
-        expect("I like a deep thinker".words() instanceof Array).toBe(true);
+        expect('I like a deep thinker'.words() instanceof Array).toBe(true);
+      });
+      it('Should return only words and not symbols', function() {
+        expect('Godson dogson @#$@'.words()).toEqual(['Godson', 'dogson']);
       });
     });
 
@@ -117,6 +120,12 @@
       });
       it('Should return 7,990,808,723.78', function() {
         expect('7990808723.78'.toCurrency()).toBe('7,990,808,723.78');
+      });
+      it('Should return 1,000', function() {
+        expect('1000'.toCurrency()).toBe('1,000');
+      });
+      it('Should return NaN for a datatype that can\'t be converted to a Number', function() {
+        expect('Godson'.toCurrency()).toEqual(NaN);
       });
     });
 

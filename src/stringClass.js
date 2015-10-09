@@ -42,7 +42,7 @@
 
   // Matches the words in a string and returns the individual words as elements in an array
   String.prototype.words = function() {
-    var listOfWords = /\S+/gi;
+    var listOfWords = /\w+/gi;
     return this.match(listOfWords);
   };
 
@@ -56,9 +56,21 @@
   // Inserts a comma(',') after every three places within a string to dentote written representation of a currency
   String.prototype.toCurrency = function() {
     var convertCurrency = /\B(?=(\d{3})+(?!\d))/g;
-    var integerPart = this.substring(0, this.indexOf("."));
-    var decimalPart = this.substring(this.indexOf(".") + 1, this.length);
-    return integerPart.replace(convertCurrency, ",") + "." + decimalPart;
+    if(Number(this)) {
+      for(var i = 0, n = this.length; i < n; i++ ) {
+        if(this[i] === '.') {
+          var integerPart = this.substring(0, this.indexOf("."));
+          var decimalPart = this.substring(this.indexOf(".") + 1, this.length);
+          return integerPart.replace(convertCurrency, ",") + "." + decimalPart;
+        }
+        else {
+          return this.replace(convertCurrency, ",");
+        }
+      }
+    }
+    else {
+      return NaN;
+    }
   };
 
 
