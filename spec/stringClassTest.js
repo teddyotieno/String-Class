@@ -31,6 +31,9 @@
       it('Should return type string', function() {
         expect(typeof('Listening to Rudimental'.toUpper())).toBe('string');
       });
+      it('Should return converted letters and symbols', function() {
+        expect('this is REAlly me$#@up'.toUpper()).toBe('THIS IS REALLY ME$#@UP');
+      });
     });
 
 
@@ -43,6 +46,9 @@
       });
       it('Should return type string', function() {
         expect(typeof('Listening to Rudimental'.toLower())).toBe('string');
+      });
+      it('Should return only converted letters and not symbols', function() {
+        expect('WE ARE THE @#$@ GENERATION #@$@!'.toLower()).toBe('we are the @#$@ generation #@$@!');
       });
     });
 
